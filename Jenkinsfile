@@ -20,6 +20,14 @@ node {
         }
     }
 
+	
+stage ('Docker push'){
+  docker.withRegistry('262836726888.dkr.ecr.us-east-1.amazonaws.com/todayrepo', 'ecr:us-east-1:aws-credentails') {
+    docker.image('demo').push('latest')
+     }
+	                echo "Trying to Push Docker Build to ECR"
+}
+	
     stage('Push image') {
         /* 
 			You would need to first register with DockerHub before you can push images to your account
